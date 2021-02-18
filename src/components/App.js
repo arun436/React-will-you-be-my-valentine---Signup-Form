@@ -34,14 +34,9 @@ const App = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if(values.name && values.email && values.email && values.phonenumber && values.password)
+    if(values.name && values.email  && values.phonenumber && values.password && values.password.length > 5 && values.email.includes("@") && isNaN(values.name))
     {
       setValid(true);
-      values.name = "";
-      values.email = "";
-      values.gender = "male";
-      values.phonenumber = "";
-      values.password = "";
     }
     setSubmitted(true);
   }
@@ -56,20 +51,23 @@ const App = () => {
         name="Name">
         </input>
         {submitted && !values.name ? <span>Name Error</span> : null}
+        {submitted && values.name && !isNaN(values.name) ? <span>Name is not alphanumeric</span> : null}
         <input data-testid='email' className="form-field" value={values.email} onChange={handleEmailInputChange}
         type="email"
         placeholder="Email"
         name="email">
         </input>
         {submitted && !values.email ? <span>Email Error</span> : null}
+        {submitted && values.email && !values.email.includes("@") ? <span>Email must contain @</span> : null}
         <select data-testid='gender' className="form-field" value={values.gender} onChange={handleGenderInputChange}>
             <option defaultValue="male">male</option>
             <option value="female">female</option>
         </select>
         <input data-testid='phoneNumber' className="form-field" value={values.phonenumber} onChange={handlePhoneNumberInputChange} type="number" placeholder="phone"></input>
         {submitted && !values.phonenumber ? <span>Phone Number Error</span> : null}
-        <input data-testid='password' type='password' className="form-field" value={values.password} onChange={handlePasswordInputChange} placeholder="password"></input>
+        <input data-testid='password' id="password" type='password' className="form-field" value={values.password} onChange={handlePasswordInputChange} placeholder="password"></input>
         {submitted && !values.password ? <span>Password Error</span> : null}
+        {submitted && values.password && document.getElementById('password').value.length < 6 ? <span>Password must contain atleast 6 letters</span> : null}
         <button data-testid='submit' className="form-field" id="submit" placeholder="Submit">Submit</button>
       </form>
     </div>
