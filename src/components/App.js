@@ -37,6 +37,11 @@ const App = () => {
     if(values.name && values.email && values.email && values.phonenumber && values.password)
     {
       setValid(true);
+      values.name = "";
+      values.email = "";
+      values.gender = "male";
+      values.phonenumber = "";
+      values.password = "";
     }
     setSubmitted(true);
   }
@@ -61,7 +66,7 @@ const App = () => {
             <option defaultValue="male">male</option>
             <option value="female">female</option>
         </select>
-        <input data-testid='phoneNumber' className="form-field" value={values.phonenumber} onChange={handlePhoneNumberInputChange} placeholder="phone"></input>
+        <input data-testid='phoneNumber' className="form-field" value={values.phonenumber} onChange={handlePhoneNumberInputChange} type="number" placeholder="phone"></input>
         {submitted && !values.phonenumber ? <span>Phone Number Error</span> : null}
         <input data-testid='password' type='password' className="form-field" value={values.password} onChange={handlePasswordInputChange} placeholder="password"></input>
         {submitted && !values.password ? <span>Password Error</span> : null}
