@@ -33,15 +33,11 @@ const App = () => {
   };
 
   // const resetValues = () =>{
-  //   let thisInterval = setInterval(()=>
-  //   {
   //     values.name = "";
   //     values.email = "";
   //     values.phonenumber = "";
   //     values.gender = "male";
   //     values.password = "";
-  //   },200);
-  //   clearInterval(thisInterval);
   // }
   const handleSubmit = (event) => {
     event.preventDefault();
